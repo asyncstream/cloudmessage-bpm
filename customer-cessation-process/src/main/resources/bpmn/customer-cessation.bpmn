@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0adw3r8" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <bpmn:process id="Process_1pl4d3k" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_15ujrmz</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="customer_cessation_task" name="Customer Cessation">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${customerCessation}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_15ujrmz</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1f9encn</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_15ujrmz" sourceRef="StartEvent_1" targetRef="customer_cessation_task" />
+    <bpmn:endEvent id="EndEvent_1x9fp3m">
+      <bpmn:incoming>SequenceFlow_1f9encn</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1f9encn" sourceRef="customer_cessation_task" targetRef="EndEvent_1x9fp3m" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1pl4d3k">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1q82c6b_di" bpmnElement="customer_cessation_task">
+        <dc:Bounds x="265" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_15ujrmz_di" bpmnElement="SequenceFlow_15ujrmz">
+        <di:waypoint x="215" y="121" />
+        <di:waypoint x="265" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1x9fp3m_di" bpmnElement="EndEvent_1x9fp3m">
+        <dc:Bounds x="415" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1f9encn_di" bpmnElement="SequenceFlow_1f9encn">
+        <di:waypoint x="365" y="121" />
+        <di:waypoint x="415" y="121" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
