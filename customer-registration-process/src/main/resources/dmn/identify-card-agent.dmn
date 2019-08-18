@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0uzvtsh" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <decision id="identify-card-agent" name="Identify Card Agent">
+    <extensionElements>
+      <biodi:bounds x="150" y="150" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Card Index" camunda:inputVariable="cardIndex">
+        <inputExpression id="inputExpression_1" typeRef="string" expressionLanguage="">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Agent" name="agent" typeRef="string" />
+      <rule id="DecisionRule_07v8mq9">
+        <inputEntry id="UnaryTests_07kggcq">
+          <text>0032</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0siuugp">
+          <text>VISA</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19yr0mu">
+        <inputEntry id="UnaryTests_03o06rs">
+          <text>0045</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1btlln9">
+          <text>MASTER</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

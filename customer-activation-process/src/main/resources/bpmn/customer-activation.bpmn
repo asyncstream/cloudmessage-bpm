@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_145cxsb" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <bpmn:process id="process_customer_activation" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${startActivation}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1ygaex5</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1ygaex5" sourceRef="StartEvent_1" targetRef="Task_0afdogv" />
+    <bpmn:sequenceFlow id="SequenceFlow_1iautnt" sourceRef="Task_0afdogv" targetRef="process_activation_result" />
+    <bpmn:receiveTask id="process_activation_result" name="Process Activation Result" messageRef="Message_1r3sspm">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${processActivationResult}" event="end" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1iautnt</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0o0pjvu</bpmn:outgoing>
+    </bpmn:receiveTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0o0pjvu" sourceRef="process_activation_result" targetRef="Task_1if1msq" />
+    <bpmn:serviceTask id="Task_1if1msq" name="Complete Activation" camunda:delegateExpression="${completeActivation}">
+      <bpmn:incoming>SequenceFlow_0o0pjvu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_19o76i5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_1kvp523">
+      <bpmn:incoming>SequenceFlow_19o76i5</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_19o76i5" sourceRef="Task_1if1msq" targetRef="EndEvent_1kvp523" />
+    <bpmn:serviceTask id="Task_0afdogv" name="Send Activation Request" camunda:delegateExpression="${sendActivationRequest}">
+      <bpmn:incoming>SequenceFlow_1ygaex5</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1iautnt</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmn:message id="Message_1r3sspm" name="Message_Activation_Result" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process_customer_activation">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="156" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ygaex5_di" bpmnElement="SequenceFlow_1ygaex5">
+        <di:waypoint x="192" y="121" />
+        <di:waypoint x="241" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1iautnt_di" bpmnElement="SequenceFlow_1iautnt">
+        <di:waypoint x="341" y="121" />
+        <di:waypoint x="486" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ReceiveTask_0hd5vsj_di" bpmnElement="process_activation_result">
+        <dc:Bounds x="486" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0o0pjvu_di" bpmnElement="SequenceFlow_0o0pjvu">
+        <di:waypoint x="586" y="121" />
+        <di:waypoint x="715" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0isyn01_di" bpmnElement="Task_1if1msq">
+        <dc:Bounds x="715" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1kvp523_di" bpmnElement="EndEvent_1kvp523">
+        <dc:Bounds x="944" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_19o76i5_di" bpmnElement="SequenceFlow_19o76i5">
+        <di:waypoint x="815" y="121" />
+        <di:waypoint x="944" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_09r8hpr_di" bpmnElement="Task_0afdogv">
+        <dc:Bounds x="241" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

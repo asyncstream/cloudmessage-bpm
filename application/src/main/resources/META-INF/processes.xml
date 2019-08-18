@@ -1,8 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
 <process-application
         xmlns="http://www.camunda.org/schema/1.0/ProcessApplication"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <process-archive name="customer-registration-process">
         <resource>bpmn/customer-registration.bpmn</resource>
+        <resource>dmn/identify-card-agent.dmn</resource>
+        <properties>
+            <property name="isDeleteUponUndeploy">false</property>
+            <property name="isScanForProcessDefinitions">true</property>
+        </properties>
+    </process-archive>
+    <process-archive name="customer-activation-process">
+        <resource>bpmn/customer-activation.bpmn</resource>
         <properties>
             <property name="isDeleteUponUndeploy">false</property>
             <property name="isScanForProcessDefinitions">true</property>

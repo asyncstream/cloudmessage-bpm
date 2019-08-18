@@ -20,6 +20,8 @@
         <module>application</module>
         <module>customer-cessation-process</module>
         <module>customer-cessation-service-adapter</module>
+        <module>customer-activation-process</module>
+        <module>customer-activation-service-adapter</module>
     </modules>
 
     <dependencyManagement>
@@ -69,7 +71,7 @@
         <dependency>
             <groupId>org.camunda.bpm.extension.mockito</groupId>
             <artifactId>camunda-bpm-mockito</artifactId>
-            <version>3.1.0</version>
+            <version>4.10.0</version>
             <scope>test</scope>
         </dependency>
 
